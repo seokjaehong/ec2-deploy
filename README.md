@@ -5,7 +5,7 @@ AWS EC2 배포를 연습하는 프로젝트 입니다.
 
 ## requirements
 
-- python < 3.7
+- python (3.6)
 
 ## Installation
 
@@ -16,7 +16,7 @@ pip install -r requirement.txt
 
 ## Secrets
 
-** `.secrets/base.json` **
+** .secrets/base.json **
 
 ```json
 {
