@@ -13,27 +13,39 @@ import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-ROOT_DIR = os.path.dirname(BASE_DIR)
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# ec2-deploy
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# print(BASE_DIR) -> app
+ROOT_DIR = os.path.dirname(BASE_DIR)
+# print(ROOT_DIR) -> ec2-deploy
+
+# static
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
+
+# media
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+# ec2-deploy/.secrets
 SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
 # ec2-deploy/.secrets/base.json
 SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
 
-# base.json파일을 읽어온 결과
+# base.json 파일을 읽어온 결과
 f = open(SECRETS_BASE, 'rt')
 base_text = f.read()
 f.close()
 
 # 위 결과를 파이썬 객체로 변환
 secrets_base = json.loads(base_text)
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = secrets_base['SECRET_KEY']
@@ -45,7 +57,10 @@ SECRET_KEY = secrets_base['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '.amazonaws.com',
+]
 
 # Application definition
 
@@ -131,5 +146,3 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'

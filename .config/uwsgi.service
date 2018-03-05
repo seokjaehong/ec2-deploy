@@ -1,0 +1,18 @@
+# 백그라운드 서비스가 어떻게 돌아갓ㄹ 지
+
+
+[Unit]
+Description=EC2 Deploy uWSGI service
+AFTER=syslog.target
+
+[Service]
+ExecStart=/home/ubuntu/.pyenv/versions/fc-ec2-deploy/bin/uwsgi -i /srv/ec2-deploy/.config/uwsgi.ini
+
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
