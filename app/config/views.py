@@ -1,9 +1,8 @@
 import mimetypes
 import os
-from django.http import FileResponse, HttpResponse
 
-from config import settings
-from config.settings import MEDIA_ROOT
+from django.conf import settings
+from django.http import FileResponse, HttpResponse
 
 
 def serve_media(request, path):
