@@ -1,6 +1,6 @@
 from .base import *
 
-secrets = json.loads(open(SECRETS_PRODUCTIONS, 'rt').read())
+secrets = json.loads(open(SECRETS_PRODUCTION, 'rt').read())
 
 DEBUG = False
 ALLOWED_HOSTS = [
