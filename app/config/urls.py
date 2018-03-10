@@ -26,4 +26,5 @@ urlpatterns = [
     # path('media/<path>', serve_media),
     # re_path(r'media/(?P<path>.*)$', serve_media),
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT,)
